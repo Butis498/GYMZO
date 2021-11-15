@@ -6,7 +6,6 @@ class DBQuery():
     def __init__(self):
 
         self.db_manager = DBManager()
-        self.db_manager.set_connection()
         self.db = self.db_manager.connection['GYMZO']
 
     

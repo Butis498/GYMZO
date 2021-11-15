@@ -2,15 +2,16 @@ from  database.DBConnection import DBConnection
 from pymongo import  errors,MongoClient
 from dotenv import load_dotenv
 import os
+from database.Singleton import Singleton
 
-
-class DBManager():
+class DBManager(metaclass=Singleton):
 
     def __init__(self):
         self.connection:MongoClient
         load_dotenv()
         self.URL = os.getenv('MONGO_URL')
         self.PORT = os.getenv('LOCAL_MONGO_PORT')
+        self.set_connection()
 
 
     def set_connection(self):

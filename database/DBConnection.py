@@ -2,6 +2,7 @@ from pymongo import MongoClient, errors
 from flask_pymongo import PyMongo
 
 
+
 class DBConnection():
     
     def __init__(self) -> None:
