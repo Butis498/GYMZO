@@ -32,7 +32,7 @@ def get_excercise(user):
         return jsonify(error_request), 400
 
 
-@app_exercise.route('/get_exercises',methods=['GET'])
+@app_exercise.route('/get_exercises',methods=['POST'])
 @token_required
 def get_exercises(user):
     db_query = DBQuery()
@@ -99,7 +99,7 @@ def register_record(user):
         sets = request.get_json()['sets']
         exercise = db_query.find_document('exercises',{"_id":ObjectId(exercise_id)})
 
-        obj = {'exercise_id':exercise_id,'weight':weight,'weight':reps,'sets':sets,'routine_id':str(exercise['routine_id']),'user_id':user['id']}
+        obj = {'exercise_id':exercise_id,'weight':weight,'reps':reps,'sets':sets,'routine_id':str(exercise['routine_id']),'user_id':user['id']}
 
         db_query.add_document('user_records',obj)
 
@@ -126,7 +126,7 @@ def get_records(user):
         exercise_id = request.get_json()['exercise_id']
         exercises = db_query.find_documents('user_records',{"exercise_id":exercise_id})
 
-        return dumps(exercises),200
+        return dumps( ),200
 
 
     except KeyError as err:
