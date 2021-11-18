@@ -132,6 +132,7 @@ def get_records(user):
                 '_id':exercise['_id'],
                 'weight':exercise['weight'],
                 'sets':exercise['sets'],
+                'reps':exercise['reps'],
                 'routine_id':exercise['routine_id'],
                 'user_id':exercise['user_id']
             }
