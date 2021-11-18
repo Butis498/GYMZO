@@ -125,8 +125,20 @@ def get_records(user):
     try:
         exercise_id = request.get_json()['exercise_id']
         exercises = db_query.find_documents('user_records',{"exercise_id":exercise_id})
+        objs = []
+        for exercise in exercises:
+            obj = {
+                'date':ObjectId(exercise['_id']).generation_time.strftime('%m/%d/%Y'),
+                '_id':exercise['_id'],
+                'weight':exercise['weight'],
+                'sets':exercise['sets'],
+                'routine_id':exercise['routine_id'],
+                'user_id':exercise['user_id']
+            }
+            objs.append(obj)
+            
 
-        return dumps( ),200
+        return dumps(objs),200
 
 
     except KeyError as err:
